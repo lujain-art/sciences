@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<meta name="theme-color" content="#080d22">
+<title>SCIENCE QUEST — مغامرة مختبر العلوم</title>
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/lab.css">
+<link rel="stylesheet" href="css/game.css">
+</head>
+<body>
+
+<svg class="svg-sprite" aria-hidden="true" focusable="false">
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 4.6c0-1.2 1.3-1.9 2.3-1.3l9.4 6.9c.9.7.9 2 0 2.7l-9.4 6.9c-1 .7-2.3 0-2.3-1.3z"/></symbol>
+  <symbol id="i-rocket" viewBox="0 0 24 24"><path d="M14.2 3.1c2.9-1.6 6.1-1.2 6.1-1.2s.4 3.2-1.2 6.1c-1.2 2.2-3.1 4.5-5.6 6.5l-3.1-3.1c2-2.5 4.3-4.4 6.5-5.6zM8.9 12.9l2.2 2.2-1.4 1.4c-.4.4-1 .4-1.4 0l-1.3-1.3c-.4-.4-.4-1 0-1.4zM4.3 15.2c1.4-.5 2.6.1 3.3.8.8.8 1.3 2 .8 3.3-1.3.4-2.6-.1-3.3-.9-.8-.7-1.3-1.9-.8-3.2z"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24"><path d="M19.4 13a7.6 7.6 0 0 0 0-2l2-1.6a.7.7 0 0 0 .2-.9l-1.9-3.2a.7.7 0 0 0-.9-.3l-2.4 1a7.4 7.4 0 0 0-1.7-1L14.3 2a.7.7 0 0 0-.7-.6h-3.8a.7.7 0 0 0-.7.6l-.4 2.6a7.4 7.4 0 0 0-1.7 1l-2.4-1a.7.7 0 0 0-.9.3L1.8 8.1a.7.7 0 0 0 .2.9L4 10.6a7.6 7.6 0 0 0 0 2l-2 1.6a.7.7 0 0 0-.2.9l1.9 3.2c.2.3.5.4.9.3l2.4-1c.5.4 1 .8 1.7 1l.4 2.6c0 .4.3.6.7.6h3.8c.4 0 .6-.2.7-.6l.4-2.6c.6-.2 1.2-.6 1.7-1l2.4 1c.3.1.7 0 .9-.3l1.9-3.2a.7.7 0 0 0-.2-.9zM12 15.3A3.3 3.3 0 1 1 12 8.7a3.3 3.3 0 0 1 0 6.6z"/></symbol>
+  <symbol id="i-volume" viewBox="0 0 24 24"><path d="M4 9.5h3.4L12 5.4c.7-.6 1.7-.1 1.7.8v11.6c0 .9-1 1.4-1.7.8l-4.6-4.1H4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1zm12.8-.9a1 1 0 0 1 1.4 0 5 5 0 0 1 0 6.8 1 1 0 1 1-1.4-1.4 3 3 0 0 0 0-4 1 1 0 0 1 0-1.4zm2.5-2.6a1 1 0 0 1 1.4 0 9 9 0 0 1 0 12 1 1 0 1 1-1.4-1.4 7 7 0 0 0 0-9.2 1 1 0 0 1 0-1.4z"/></symbol>
+  <symbol id="i-muted" viewBox="0 0 24 24"><path d="M4 9.5h3.4L12 5.4c.7-.6 1.7-.1 1.7.8v11.6c0 .9-1 1.4-1.7.8l-4.6-4.1H4a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1zm12 1.1 1.5-1.5 1.4 1.4-1.5 1.5 1.5 1.5-1.4 1.4-1.5-1.5-1.5 1.5-1.4-1.4 1.5-1.5-1.5-1.5 1.4-1.4z"/></symbol>
+  <symbol id="i-close" viewBox="0 0 24 24"><path d="M6.2 4.8 12 10.6l5.8-5.8 1.4 1.4L13.4 12l5.8 5.8-1.4 1.4L12 13.4l-5.8 5.8-1.4-1.4L10.6 12 4.8 6.2z"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="m12 2.6 2.9 5.9 6.5.9-4.7 4.6 1.1 6.4-5.8-3-5.8 3 1.1-6.4L2.6 9.4l6.5-.9z"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><path d="M7 10V8a5 5 0 0 1 10 0v2h.5A2.5 2.5 0 0 1 20 12.5v6A2.5 2.5 0 0 1 17.5 21h-11A2.5 2.5 0 0 1 4 18.5v-6A2.5 2.5 0 0 1 6.5 10zm2 0h6V8a3 3 0 0 0-6 0z"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M12 3.2 21 11h-2.6v8.2a1 1 0 0 1-1 1h-4.2v-5.6h-2.4v5.6H6.6a1 1 0 0 1-1-1V11H3z"/></symbol>
+  <symbol id="i-skip" viewBox="0 0 24 24"><path d="M4 5.7c0-.8.9-1.3 1.6-.9L13 9.4V5.7c0-.8.9-1.3 1.6-.9l7 4.8c.7.4.7 1.4 0 1.8l-7 4.8c-.7.4-1.6-.1-1.6-.9v-3.7l-7.4 4.6c-.7.4-1.6-.1-1.6-.9zM2 5h2v14H2z"/></symbol>
+  <symbol id="i-bulb" viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 1 4 12.7c-.7.5-1 1.1-1 1.9v.4H9v-.4c0-.8-.3-1.4-1-1.9A7 7 0 0 1 12 2zM9 19h6v1.2a1.8 1.8 0 0 1-1.8 1.8h-2.4A1.8 1.8 0 0 1 9 20.2z"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M9.6 18.4 3.2 12l1.9-1.9 4.5 4.5L18.9 5.3l1.9 1.9z"/></symbol>
+  <symbol id="i-replay" viewBox="0 0 24 24"><path d="M12 4a8 8 0 1 1-7.4 5H2l3.5-4L9 9H6.6A6 6 0 1 0 12 6z"/></symbol>
+  <symbol id="i-map" viewBox="0 0 24 24"><path d="M9 2.8 15 5l5.6-2.1c.5-.2 1.4.3 1.4.9v15.3c0 .4-.2.7-.6.9L15 22 9 19.8 3.4 21.9c-.5.2-1.4-.3-1.4-.9V5.7c0-.4.2-.7.6-.9zM10 4.6v13.1l4 1.5V6.1zM3.9 7.1v12.2L8 17.8V4.7zM16 5.9v13.2l3.9-1.5V5.2z"/></symbol>
+  <symbol id="i-hand" viewBox="0 0 24 24"><path d="M8.2 2.7c.7 0 1.2.5 1.2 1.2v5.6h.8V3.3c0-.7.5-1.2 1.2-1.2s1.2.5 1.2 1.2v6.2h.8V4.8c0-.7.5-1.2 1.2-1.2s1.2.5 1.2 1.2v4.7h.8V6.7c0-.7.5-1.2 1.2-1.2s1.2.5 1.2 1.2v6.5c0 4.3-2.6 7.6-6.6 7.6-3.3 0-5.2-1.9-6.5-4.7l-1.4-3c-.2-.5-.3-.9-.1-1.4.3-.8 1.3-1.1 2-.6l1.3 1v-8c0-.7.5-1.2 1.2-1.2z"/></symbol>
+  <symbol id="i-music" viewBox="0 0 24 24"><path d="M20 3.3c0-.8-.7-1.4-1.5-1.2l-9 2.1c-.6.1-1 .6-1 1.2v10.4a3.5 3.5 0 1 0 2 3.2V8.6l7.6-1.8v5.5a3.5 3.5 0 1 0 1.9 3.1z"/></symbol>
+  <symbol id="i-magnet" viewBox="0 0 24 24"><path d="M3 3h5v8.2a4 4 0 0 0 8 0V3h5v8.2a9 9 0 0 1-18 0z"/></symbol>
+  <symbol id="i-sieve" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M11 2.2a8.3 8.3 0 1 0 0 16.6 8.3 8.3 0 0 0 0-16.6zm0 1.8a6.5 6.5 0 1 1 0 13 6.5 6.5 0 0 1 0-13zM18.7 8.8h3a1.5 1.5 0 0 1 0 3h-3zM8.2 7a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm3.2-.6a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm3.2.6a1 1 0 1 1 0 2 1 1 0 0 1 0-2zM9.8 10.6a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm3.2 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z"/></symbol>
+  <symbol id="i-funnel" viewBox="0 0 24 24"><path d="M3.4 3.2h17.2c.8 0 1.2.9.8 1.5l-6.6 7.6v6.6h2.6c.7 0 1.2.5 1.2 1.2s-.5 1.2-1.2 1.2H6.6c-.7 0-1.2-.5-1.2-1.2s.5-1.2 1.2-1.2h2.6v-6.6L2.6 4.7c-.4-.6 0-1.5.8-1.5z"/></symbol>
+</svg>
+
+<div id="app" data-scene="title" data-progress="0">
+
+  <!-- ============ LABORATORY BACKDROP ============ -->
+  <div class="lab-bg" id="lab-bg" aria-hidden="true">
+    <svg class="lab-svg" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice">
+      <defs>
+        <linearGradient id="g-wall" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#070c22"/>
+          <stop offset=".42" stop-color="#0d1636"/>
+          <stop offset="1" stop-color="#0a1029"/>
+        </linearGradient>
+        <linearGradient id="g-cone" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#ffdf9a" stop-opacity=".26"/>
+          <stop offset="1" stop-color="#ffdf9a" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="g-floor" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#121c3f"/>
+          <stop offset="1" stop-color="#050917"/>
+        </linearGradient>
+        <linearGradient id="g-sky" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#07132c"/>
+          <stop offset="1" stop-color="#12305c"/>
+        </linearGradient>
+        <radialGradient id="g-moon" cx=".4" cy=".35" r=".8">
+          <stop offset="0" stop-color="#fff8dc"/>
+          <stop offset="1" stop-color="#ffe9a8"/>
+        </radialGradient>
+        <radialGradient id="g-core" cx=".5" cy=".5" r=".5">
+          <stop offset="0" stop-color="#c9ffff"/>
+          <stop offset=".45" stop-color="#41e6ff"/>
+          <stop offset="1" stop-color="#2a78ff" stop-opacity="0"/>
+        </radialGradient>
+        <linearGradient id="g-door" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#3ff0ff"/>
+          <stop offset="1" stop-color="#1467ff"/>
+        </linearGradient>
+        <linearGradient id="g-door-panel" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#1a2c58"/>
+          <stop offset="1" stop-color="#101d3f"/>
+        </linearGradient>
+        <linearGradient id="g-glass" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#a9f0ff" stop-opacity=".75"/>
+          <stop offset="1" stop-color="#4b9dff" stop-opacity=".25"/>
+        </linearGradient>
+        <pattern id="p-hex" width="86" height="74" patternUnits="userSpaceOnUse">
+          <path d="M43 2.5 78 23v41L43 84 8 64V23Z" fill="none" stroke="#7be7ff" stroke-opacity=".075" stroke-width="1.4"/>
+        </pattern>
+        <pattern id="p-dots" width="46" height="46" patternUnits="userSpaceOnUse">
+          <circle cx="2" cy="2" r="1.3" fill="#9ad9ff" opacity=".16"/>
+        </pattern>
+        <pattern id="p-grid" width="120" height="120" patternUnits="userSpaceOnUse">
+          <path d="M0 0H120M0 60H120M0 0V120M60 0V120" stroke="#73c6ff" stroke-opacity=".06" stroke-width="1"/>
+        </pattern>
+      </defs>
+
+      <rect width="1600" height="900" fill="url(#g-wall)"/>
+      <rect width="1600" height="900" fill="url(#p-hex)"/>
+      <rect width="1600" height="720" fill="url(#p-grid)"/>
+
+      <!-- pipes -->
+      <g class="lab-pipes" opacity=".9">
+        <path d="M-20 64 H900 q26 0 26 26 v40" fill="none" stroke="#1a2a52" stroke-width="26" stroke-linecap="round"/>
+        <path d="M-20 64 H900 q26 0 26 26 v40" fill="none" stroke="#35528f" stroke-width="4" stroke-linecap="round" opacity=".65"/>
+        <path d="M1180 40 H1630" fill="none" stroke="#1a2a52" stroke-width="20" stroke-linecap="round"/>
+        <path d="M1180 40 H1630" fill="none" stroke="#35528f" stroke-width="3" stroke-linecap="round" opacity=".6"/>
+        <circle cx="960" cy="120" r="17" fill="#22355f" stroke="#3c5a99" stroke-width="4"/>
+        <path d="M960 103v34M943 120h34" stroke="#5f7dbb" stroke-width="3"/>
+        <circle cx="1320" cy="40" r="14" fill="#22355f" stroke="#3c5a99" stroke-width="3"/>
+        <path d="M723 64v64" stroke="#1a2a52" stroke-width="16"/>
+        <circle cx="723" cy="146" r="12" fill="#2b4477" stroke="#4569b3" stroke-width="3"/>
+      </g>
+
+      <!-- far shelf / arch door -->
+      <g class="lab-door" transform="translate(690 150)">
+        <text x="150" y="-44" text-anchor="middle" class="door-sign">مختبر العلوم</text>
+        <path d="M-14 556V154C-14 62 60 -4 150 -4s164 66 164 158v402Z" fill="#0b1430" stroke="#22386c" stroke-width="9"/>
+        <g class="door-light">
+          <path d="M14 552V156c0-80 62-140 136-140s136 60 136 140v396Z" fill="url(#g-door)" opacity=".0"/>
+        </g>
+        <g class="door-panel door-panel-r">
+          <path d="M150 20c76 0 136 62 136 140v392H150Z" fill="url(#g-door-panel)" stroke="#2a4278" stroke-width="4"/>
+          <rect x="188" y="120" width="60" height="10" rx="5" fill="#3a5590" opacity=".7"/>
+          <rect x="188" y="470" width="60" height="10" rx="5" fill="#3a5590" opacity=".7"/>
+          <circle cx="238" cy="300" r="7" fill="#6fe9ff"/>
+        </g>
+        <g class="door-panel door-panel-l">
+          <path d="M14 552V160C14 82 74 20 150 20v532Z" fill="url(#g-door-panel)" stroke="#2a4278" stroke-width="4"/>
+          <rect x="52" y="120" width="60" height="10" rx="5" fill="#3a5590" opacity=".7"/>
+          <rect x="52" y="470" width="60" height="10" rx="5" fill="#3a5590" opacity=".7"/>
+          <circle cx="62" cy="300" r="7" fill="#6fe9ff"/>
+        </g>
+        <rect x="-26" y="540" width="352" height="22" rx="8" fill="#1a2a52" stroke="#2c4477" stroke-width="3"/>
+      </g>
+
+      <!-- window -->
+      <g class="lab-window" transform="translate(1060 150)">
+        <rect x="-20" y="-20" width="332" height="272" rx="24" fill="#0c1734" stroke="#243a6b" stroke-width="8"/>
+        <rect x="0" y="0" width="292" height="232" rx="14" fill="url(#g-sky)"/>
+        <g class="win-stars" fill="#dff3ff">
+          <circle cx="34" cy="40" r="1.7"/><circle cx="76" cy="22" r="1.2"/><circle cx="120" cy="52" r="1.5"/>
+          <circle cx="48" cy="96" r="1.1"/><circle cx="196" cy="36" r="1.8"/><circle cx="248" cy="72" r="1.2"/>
+          <circle cx="268" cy="30" r="1.4"/><circle cx="158" cy="26" r="1"/><circle cx="214" cy="104" r="1.2"/>
+        </g>
+        <circle cx="226" cy="62" r="30" fill="url(#g-moon)"/>
+        <circle cx="240" cy="52" r="30" fill="#0f254a"/>
+        <path d="M0 196q60-46 120-14t172-30v80H0Z" fill="#0b1c3b"/>
+        <path d="M0 196q60-46 120-14t172-30" fill="none" stroke="#4a77bd" stroke-width="2" opacity=".5"/>
+        <rect x="144" y="0" width="6" height="232" fill="#243a6b"/>
+        <rect x="0" y="112" width="292" height="6" fill="#243a6b"/>
+        <rect x="-26" y="242" width="344" height="18" rx="6" fill="#1d3059"/>
+        <path d="M20 20 120 20" stroke="#9fe8ff" stroke-opacity=".35" stroke-width="5" stroke-linecap="round"/>
+      </g>
+      <path d="M1060 392 1330 392 1460 900 830 900Z" fill="#7fc8ff" opacity=".035"/>
+
+      <!-- shelves with bottles -->
+      <g class="lab-shelves" transform="translate(52 250)">
+        <rect x="0" y="0" width="392" height="16" rx="7" fill="#22345f"/>
+        <rect x="0" y="16" width="392" height="7" rx="3" fill="#101c3a"/>
+        <rect x="0" y="188" width="392" height="16" rx="7" fill="#22345f"/>
+        <rect x="0" y="204" width="392" height="7" rx="3" fill="#101c3a"/>
+        <rect x="20" y="16" width="10" height="180" fill="#1a2a50"/>
+        <rect x="362" y="16" width="10" height="180" fill="#1a2a50"/>
+        <rect x="0" y="360" width="392" height="14" rx="6" fill="#1d2f57"/>
+
+        <!-- top tier bottles -->
+        <g class="bottle b1" transform="translate(40 -72)">
+          <rect x="12" y="0" width="20" height="14" rx="4" fill="#8fa4cc"/>
+          <path d="M4 24q0-12 8-16h20q8 4 8 16v52q0 8-8 8H12q-8 0-8-8Z" fill="url(#g-glass)" opacity=".85"/>
+          <path d="M4 46h40v30q0 8-8 8H12q-8 0-8-8Z" fill="#39d2ff" opacity=".55"/>
+          <path d="M10 30v-4" stroke="#e8fbff" stroke-width="3" opacity=".6"/>
+        </g>
+        <g class="bottle b2" transform="translate(104 -96)">
+          <rect x="16" y="0" width="16" height="16" rx="5" fill="#c9d6ef"/>
+          <path d="M4 34q0-16 14-18h12q14 2 14 18v44q0 8-8 8H12q-8 0-8-8Z" fill="url(#g-glass)" opacity=".8"/>
+          <path d="M4 58h40v20q0 8-8 8H12q-8 0-8-8Z" fill="#b06bff" opacity=".55"/>
+        </g>
+        <g class="bottle b3" transform="translate(176 -62)">
+          <path d="M18 0h12v18l14 20q6 9 6 20v32q0 8-8 8H6q-8 0-8-8V58q0-11 6-20l14-20Z" fill="url(#g-glass)" opacity=".8"/>
+          <path d="M0 66h48v24q0 8-8 8H8q-8 0-8-8Z" fill="#67ffcc" opacity=".45"/>
+          <path d="M8 34h32" stroke="#dffbff" stroke-width="2" opacity=".5"/>
+        </g>
+        <g class="bottle b4" transform="translate(256 -88)">
+          <circle cx="24" cy="52" r="28" fill="url(#g-glass)" opacity=".8"/>
+          <circle cx="24" cy="52" r="28" fill="none" stroke="#bff4ff" stroke-opacity=".4" stroke-width="2"/>
+          <rect x="18" y="14" width="12" height="14" fill="#9fb6da"/>
+          <path d="M2 60a22 22 0 0 0 44 0q0 18-22 18T2 60Z" fill="#ffcb57" opacity=".5"/>
+          <circle class="flask-bubble fb1" cx="18" cy="52" r="3" fill="#eaffff" opacity=".7"/>
+          <circle class="flask-bubble fb2" cx="28" cy="46" r="2.2" fill="#eaffff" opacity=".6"/>
+          <circle class="flask-bubble fb3" cx="23" cy="58" r="2.6" fill="#eaffff" opacity=".55"/>
+        </g>
+        <g class="bottle b5" transform="translate(326 -108)">
+          <rect x="8" y="0" width="26" height="34" rx="10" fill="url(#g-glass)" opacity=".75"/>
+          <rect x="8" y="72" width="26" height="34" rx="10" fill="url(#g-glass)" opacity=".75"/>
+          <rect x="8" y="0" width="26" height="34" rx="10" fill="#ff7aa8" opacity=".28"/>
+          <rect x="8" y="72" width="26" height="34" rx="10" fill="#7ac9ff" opacity=".3"/>
+        </g>
+
+        <!-- lower tier -->
+        <g class="bottle b6" transform="translate(28 128)">
+          <path d="M0 34 34 8l34 26v50H0Z" fill="url(#g-glass)" opacity=".55"/>
+          <path d="M0 60h68v24H0Z" fill="#4be3c3" opacity=".35"/>
+          <rect x="26" y="0" width="16" height="12" rx="4" fill="#a8bde0"/>
+        </g>
+        <g class="bottle b7" transform="translate(104 108)">
+          <rect x="0" y="26" width="26" height="66" rx="8" fill="url(#g-glass)" opacity=".8"/>
+          <rect x="0" y="58" width="26" height="34" rx="7" fill="#ffd166" opacity=".45"/>
+          <rect x="30" y="12" width="22" height="80" rx="7" fill="url(#g-glass)" opacity=".7"/>
+          <rect x="30" y="52" width="22" height="40" rx="6" fill="#7cf0ff" opacity=".4"/>
+          <rect x="56" y="36" width="18" height="56" rx="6" fill="url(#g-glass)" opacity=".65"/>
+        </g>
+        <g class="tube-rack" transform="translate(196 108)">
+          <rect x="0" y="44" width="104" height="46" rx="10" fill="#18294e" stroke="#2c4477" stroke-width="2"/>
+          <g fill="url(#g-glass)" opacity=".8">
+            <rect x="8" y="10" width="14" height="66" rx="7"/>
+            <rect x="30" y="2" width="14" height="74" rx="7"/>
+            <rect x="52" y="14" width="14" height="62" rx="7"/>
+            <rect x="74" y="4" width="14" height="72" rx="7"/>
+          </g>
+          <g>
+            <rect x="8" y="50" width="14" height="26" rx="6" fill="#57e0ff" opacity=".6"/>
+            <rect x="30" y="46" width="14" height="30" rx="6" fill="#ff9f68" opacity=".55"/>
+            <rect x="52" y="52" width="14" height="24" rx="6" fill="#a7ff9a" opacity=".5"/>
+            <rect x="74" y="48" width="14" height="28" rx="6" fill="#ffd166" opacity=".55"/>
+          </g>
+        </g>
+        <g class="bottle b8" transform="translate(322 122)">
+          <rect x="0" y="16" width="44" height="76" rx="12" fill="url(#g-glass)" opacity=".7"/>
+          <rect x="0" y="54" width="44" height="38" rx="11" fill="#7a8cff" opacity=".35"/>
+          <rect x="12" y="0" width="20" height="18" rx="6" fill="#a8bde0"/>
+        </g>
+      </g>
+
+      <!-- generator on far left -->
+      <g class="lab-machine" transform="translate(30 500)">
+        <rect x="0" y="10" width="168" height="220" rx="26" fill="#101c3c" stroke="#263d6e" stroke-width="5"/>
+        <rect x="14" y="26" width="140" height="86" rx="16" fill="#0a1329" stroke="#2d487d" stroke-width="3"/>
+        <circle cx="84" cy="120" r="58" fill="none" stroke="#1d3463" stroke-width="12"/>
+        <g class="machine-ring">
+          <path d="M84 70a50 50 0 0 1 50 50" fill="none" stroke="#59e0ff" stroke-width="6" stroke-linecap="round" opacity=".8"/>
+          <path d="M84 170a50 50 0 0 1-50-50" fill="none" stroke="#59e0ff" stroke-width="6" stroke-linecap="round" opacity=".8"/>
+        </g>
+        <circle class="machine-core" cx="84" cy="120" r="26" fill="url(#g-core)"/>
+        <g class="gauge" transform="translate(32 42)">
+          <circle r="14" fill="#0c1730" stroke="#39598f" stroke-width="3"/>
+          <path d="M0 0 -7 -7" stroke="#ffd166" stroke-width="3" stroke-linecap="round"/>
+        </g>
+        <g class="gauge" transform="translate(110 42)">
+          <circle r="14" fill="#0c1730" stroke="#39598f" stroke-width="3"/>
+          <path d="M0 0 6 -8" stroke="#7cf0ff" stroke-width="3" stroke-linecap="round"/>
+        </g>
+        <rect x="26" y="196" width="116" height="12" rx="6" fill="#1d3463"/>
+        <circle class="led led1" cx="40" cy="202" r="4" fill="#7cf0ff"/>
+        <circle class="led led2" cx="58" cy="202" r="4" fill="#ffd166"/>
+        <circle class="led led3" cx="76" cy="202" r="4" fill="#ff7aa8"/>
+      </g>
+
+      <!-- monitors -->
+      <g class="lab-monitors" transform="translate(1330 470)">
+        <rect x="-20" y="-16" width="250" height="180" rx="18" fill="#0d1834" stroke="#22396b" stroke-width="5"/>
+        <rect x="0" y="0" width="96" height="64" rx="8" fill="#081127" stroke="#2b4c85" stroke-width="2"/>
+        <rect x="108" y="0" width="102" height="64" rx="8" fill="#081127" stroke="#2b4c85" stroke-width="2"/>
+        <rect x="0" y="76" width="210" height="62" rx="8" fill="#081127" stroke="#2b4c85" stroke-width="2"/>
+        <g class="mon-bars" fill="#4fe6ff">
+          <rect class="mon-bar" x="10" y="40" width="6" height="14" rx="2"/>
+          <rect class="mon-bar" x="20" y="30" width="6" height="24" rx="2"/>
+          <rect class="mon-bar" x="30" y="20" width="6" height="34" rx="2"/>
+          <rect class="mon-bar" x="40" y="34" width="6" height="20" rx="2"/>
+          <rect class="mon-bar" x="50" y="24" width="6" height="30" rx="2"/>
+          <rect class="mon-bar" x="60" y="38" width="6" height="16" rx="2"/>
+          <rect class="mon-bar" x="70" y="28" width="6" height="26" rx="2"/>
+          <rect class="mon-bar" x="80" y="18" width="6" height="36" rx="2"/>
+        </g>
+        <path d="M114 54 130 36 146 46 162 22 178 40 194 26" fill="none" stroke="#ffd166" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M12 96h60v30H12z" fill="#12305c" opacity=".55"/>
+        <path d="M76 96h60v30H76z" fill="#0e4a5c" opacity=".55"/>
+        <path d="M140 96h60v30h-60z" fill="#3b2350" opacity=".55"/>
+        <path d="M20 112h44M84 112h44M148 112h44" stroke="#7cc9ff" stroke-width="3" stroke-linecap="round" opacity=".75"/>
+        <circle cx="160" cy="46" r="24" fill="none" stroke="#2b4c85" stroke-width="2"/>
+        <path class="radar-sweep" d="M160 46 160 26" stroke="#7cf0ff" stroke-width="3" stroke-linecap="round"/>
+      </g>
+
+      <!-- plant -->
+      <g class="lab-plant" transform="translate(1460 640)">
+        <path d="M12 76h96l-12 88H24Z" fill="#263f6d" stroke="#3a5b95" stroke-width="4"/>
+        <path d="M12 76h96l-4 22H16Z" fill="#365486"/>
+        <g class="leaves">
+          <path d="M60 78C46 20 12 8 0 4c10 32 26 62 60 74Z" fill="#2fbf8f"/>
+          <path d="M60 80C78 18 112 10 128 8c-12 30-32 60-68 72Z" fill="#37d9a1"/>
+          <path d="M60 74C54 30 60 8 64 0c8 26 10 52-4 74Z" fill="#49efb3"/>
+          <path d="M60 76C40 44 24 36 12 30c16 24 30 38 48 46Z" fill="#27a87c"/>
+          <path d="M60 78c20-30 36-38 48-44-14 24-30 38-48 44Z" fill="#2fbf8f"/>
+        </g>
+      </g>
+      <ellipse cx="1508" cy="812" rx="74" ry="14" fill="#03060f" opacity=".6"/>
+
+      <!-- floor -->
+      <rect y="700" width="1600" height="200" fill="url(#g-floor)"/>
+      <rect y="700" width="1600" height="3" fill="#2b477e" opacity=".55"/>
+      <g class="floor-grid" stroke="#63c8ff" stroke-opacity=".1" stroke-width="1.4">
+        <path d="M0 740H1600M0 790H1600M0 850H1600"/>
+        <path d="M400 700 240 900M640 700 520 900M880 700 900 900M1120 700 1260 900M1360 700 1540 900"/>
+      </g>
+      <ellipse cx="800" cy="760" rx="380" ry="60" fill="#7cc9ff" opacity=".035"/>
+      <ellipse cx="1200" cy="760" rx="200" ry="40" fill="#ffdf9a" opacity=".025"/>
+
+      <!-- hanging lamps -->
+      <g class="lamp" transform="translate(820 0)">
+        <path d="M0 0v96" stroke="#2a3f70" stroke-width="5"/>
+        <path d="M-34 118h68l-14 22h-40Z" fill="#2b4374" stroke="#43649f" stroke-width="3"/>
+        <ellipse cx="0" cy="120" rx="34" ry="7" fill="#ffd88a" opacity=".9"/>
+        <ellipse class="lamp-glow" cx="0" cy="144" rx="72" ry="30" fill="#ffe3a0" opacity=".25"/>
+        <path d="M-26 144 26 144 240 900 -240 900Z" fill="url(#g-cone)"/>
+      </g>
+      <g class="lamp" transform="translate(420 0)">
+        <path d="M0 0v128" stroke="#2a3f70" stroke-width="4"/>
+        <path d="M-26 148h52l-11 18h-30Z" fill="#2b4374" stroke="#43649f" stroke-width="3"/>
+        <ellipse cx="0" cy="150" rx="26" ry="6" fill="#ffd88a" opacity=".85"/>
+        <ellipse class="lamp-glow" cx="0" cy="170" rx="54" ry="24" fill="#ffe3a0" opacity=".18"/>
+        <path d="M-20 170 20 170 190 900 -190 900Z" fill="url(#g-cone)"/>
+      </g>
+      <g class="lamp" transform="translate(1230 0)">
+        <path d="M0 0v82" stroke="#2a3f70" stroke-width="4"/>
+        <path d="M-28 102h56l-12 19h-32Z" fill="#2b4374" stroke="#43649f" stroke-width="3"/>
+        <ellipse cx="0" cy="104" rx="28" ry="6" fill="#ffd88a" opacity=".85"/>
+        <ellipse class="lamp-glow" cx="0" cy="124" rx="58" ry="26" fill="#ffe3a0" opacity=".18"/>
+        <path d="M-22 124 22 124 200 900 -200 900Z" fill="url(#g-cone)"/>
+      </g>
+
+      <!-- warm reflection pool -->
+      <ellipse cx="820" cy="770" rx="260" ry="46" fill="#ffe3a0" opacity=".05"/>
+    </svg>
+
+    <div class="lab-vignette"></div>
+    <div class="lab-lightwash"></div>
+    <canvas id="dust" class="dust-canvas"></canvas>
+    <div class="ambient-bubbles" id="ambient-bubbles"></div>
+  </div>
+
+  <canvas id="fx" class="fx-canvas"></canvas>
+
+  <div class="characters" id="characters"></div>
+
+  <!-- ============ TITLE ============ -->
+  <section class="screen screen-title is-active" id="screen-title">
+    <div class="title-wrap">
+      <div class="title-badge">
+        <svg class="tiny-icon"><use href="#i-star"/></svg>
+        <span>مختبر العلوم العجيب</span>
+      </div>
+      <h1 class="logo">
+        <span class="logo-en">SCIENCE<span class="logo-quest">QUEST</span></span>
+        <span class="logo-ar">مغامرة مختبر العلوم</span>
+      </h1>
+      <p class="title-sub">الصف الثالث • فصل المخاليط • أربع مهام مشوّقة</p>
+      <button class="btn btn-gold btn-xl btn-start" data-action="start-adventure">
+        <svg class="btn-icon"><use href="#i-play"/></svg>
+        <span>ابدأ المغامرة</span>
+      </button>
+      <p class="title-note"><svg class="tiny-icon"><use href="#i-volume"/></svg> اضغط لتشغيل الصوت والموسيقى — يعمل بدون إنترنت</p>
+      <div class="title-cast">
+        <span>البروفيسور ميكس</span><i></i><span>بابلز</span><i></i><span>ترابل</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CINEMATIC INTRO ============ -->
+  <section class="screen screen-intro" id="screen-intro">
+    <div class="intro-top">
+      <div class="intro-chapter" id="intro-chapter">المشهد ١ • المختبر السري</div>
+      <button class="pill-btn ghost" data-action="skip-intro">
+        <span>تخطّي المقدمة</span>
+        <svg class="tiny-icon"><use href="#i-skip"/></svg>
+      </button>
+    </div>
+
+    <div class="intro-titlecard" id="intro-titlecard">
+      <p>في مكان سري تحت المدرسة...</p>
+      <h2>مختبر العلوم العجيب</h2>
+    </div>
+
+    <div class="intro-flash" id="intro-flash"></div>
+    <div class="intro-sparkles" id="intro-sparkles"></div>
+
+    <div class="intro-cta" id="intro-cta" hidden>
+      <div class="urgent-badge"><span class="urgent-dot"></span> مهمة عاجلة!</div>
+      <h2>هل أنتم مستعدون لإنقاذ مختبر العلوم؟</h2>
+      <p>ساعدوا البروفيسور ميكس في فصل المواد المختلطة قبل أن يغلق المختبر!</p>
+      <button class="btn btn-gold btn-xl btn-start" data-action="enter-game">
+        <svg class="btn-icon"><use href="#i-rocket"/></svg>
+        <span>ابدأ المغامرة</span>
+      </button>
+    </div>
+  </section>
+
+  <!-- ============ MAP ============ -->
+  <section class="screen screen-map" id="screen-map">
+    <header class="top-bar">
+      <div class="brand-mini">
+        <span class="brand-glyph"><svg><use href="#i-map"/></svg></span>
+        <div>
+          <b>مختبر العلوم</b>
+          <small>SCIENCE QUEST</small>
+        </div>
+      </div>
+      <div class="map-hud-stats">
+        <div class="stat-chip">
+          <svg class="tiny-icon gold"><use href="#i-star"/></svg>
+          <span id="map-star-count">٠ / ٤</span>
+        </div>
+        <div class="stat-chip lights-chip" id="lights-chip">
+          <span class="lamp-dot"></span>
+          <span id="lights-label">أنوار المختبر: خافتة</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="map-body">
+      <div class="map-heading">
+        <span class="mission-chip">خريطة المهمات</span>
+        <h2>اختر المهمة التالية</h2>
+        <p id="map-sub">المختبر مظلم... أنجزوا المهمة الأولى لتشعّ الأنوار.</p>
+        <div class="progress-dots" id="map-progress-dots"></div>
+      </div>
+
+      <div class="map-stage">
+        <div class="map-grid-glow"></div>
+        <svg class="map-path" viewBox="0 0 1200 620" preserveAspectRatio="none" aria-hidden="true">
+          <path class="map-path-base" d="M876 168 C 720 96, 480 96, 324 168 C 228 202, 228 408, 324 444 C 480 516, 720 516, 876 444"/>
+          <path class="map-path-glow" d="M876 168 C 720 96, 480 96, 324 168 C 228 202, 228 408, 324 444 C 480 516, 720 516, 876 444"/>
+        </svg>
+        <div class="map-nodes" id="map-nodes"></div>
+        <div class="map-decor decor-flask" aria-hidden="true">
+          <svg viewBox="0 0 90 110"><path d="M32 12h26M40 12v26L14 86c-4 8 1 14 9 14h44c8 0 13-6 9-14L50 38V12" fill="none" stroke="#3b6aa8" stroke-width="4" stroke-linejoin="round"/><path d="M25 70h40l10 20c2 5-1 8-7 8H22c-6 0-9-3-7-8Z" fill="#4fe6ff" opacity=".28"/><circle cx="40" cy="84" r="4" fill="#9ff5ff" opacity=".7"/></svg>
+        </div>
+        <div class="map-decor decor-star" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#i-star"/></svg></div>
+        <div class="map-decor decor-atoms" aria-hidden="true">
+          <svg viewBox="0 0 100 100"><ellipse cx="50" cy="50" rx="42" ry="16" fill="none" stroke="#3b6aa8" stroke-width="2" opacity=".7"/><ellipse cx="50" cy="50" rx="42" ry="16" fill="none" stroke="#3b6aa8" stroke-width="2" opacity=".7" transform="rotate(60 50 50)"/><ellipse cx="50" cy="50" rx="42" ry="16" fill="none" stroke="#3b6aa8" stroke-width="2" opacity=".7" transform="rotate(120 50 50)"/><circle cx="50" cy="50" r="7" fill="#ffd166"/></svg>
+        </div>
+      </div>
+
+      <div class="map-footer">
+        <button class="pill-btn ghost" data-action="replay-intro">
+          <svg class="tiny-icon"><use href="#i-replay"/></svg>
+          <span>إعادة المشهد الافتتاحي</span>
+        </button>
+        <p class="map-tip"><svg class="tiny-icon"><use href="#i-bulb"/></svg> كل مهمة تعلّمكم طريقة جديدة لفصل المخاليط</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MISSION ============ -->
+  <section class="screen screen-mission" id="screen-mission">
+    <header class="mission-hud">
+      <button class="icon-btn" data-action="to-map" aria-label="العودة إلى الخريطة" title="خريطة المهام">
+        <svg><use href="#i-map"/></svg>
+      </button>
+      <div class="mission-heading">
+        <span class="mission-chip" id="mission-chip">المهمة الأولى</span>
+        <h2 id="mission-title">مغناطيس الحديد</h2>
+        <p id="mission-goal">اسحب المغناطيس فوق الخليط ليجذب المسامير.</p>
+      </div>
+      <div class="mission-hud-actions">
+        <button class="pill-btn hint-btn" data-action="hint" aria-label="مساعدة">
+          <svg class="tiny-icon"><use href="#i-bulb"/></svg>
+          <span>مساعدة</span>
+        </button>
+        <div class="mission-steps" id="mission-steps"></div>
+      </div>
+    </header>
+
+    <div class="stage-wrap" id="stage-wrap">
+      <div class="stage" id="stage"></div>
+    </div>
+
+    <div class="objective-bar" id="objective-bar">
+      <div class="objective-icon"><svg><use href="#i-hand"/></svg></div>
+      <div class="objective-main">
+        <div class="objective-text" id="objective-text">اسحب المغناطيس فوق الخليط</div>
+        <div class="progress"><div class="progress-fill" id="progress-fill"></div></div>
+      </div>
+      <div class="objective-count" id="objective-count">٠ / ٦</div>
+    </div>
+  </section>
+
+  <!-- ============ VICTORY ============ -->
+  <section class="screen screen-victory" id="screen-victory">
+    <div class="victory-rays" id="victory-rays"></div>
+    <div class="victory-particles" id="victory-particles"></div>
+    <div class="victory-inner">
+      <div class="victory-emblem">
+        <svg class="victory-star"><use href="#i-star"/></svg>
+        <span>SCIENCE QUEST</span>
+      </div>
+      <div class="victory-badge-en">MASTER SCIENCE EXPLORERS</div>
+      <h1>لقد أنقذتم مختبر العلوم!</h1>
+      <p class="victory-sub">أعدتم كل مادة إلى مكانها، وأشعلتم أنوار المختبر من جديد.</p>
+      <div class="victory-stars">
+        <svg class="v-star"><use href="#i-star"/></svg>
+        <svg class="v-star"><use href="#i-star"/></svg>
+        <svg class="v-star"><use href="#i-star"/></svg>
+        <svg class="v-star"><use href="#i-star"/></svg>
+      </div>
+      <div class="victory-recap">
+        <div><b>المغناطيس</b><span>يجذب الحديد</span></div>
+        <div><b>الغربال</b><span>يفصل حسب الحجم</span></div>
+        <div><b>الترشيح</b><span>يفصل الصلب عن السائل</span></div>
+      </div>
+      <div class="victory-actions">
+        <button class="btn btn-gold" data-action="victory-map">
+          <svg class="btn-icon"><use href="#i-map"/></svg>
+          <span>خريطة المختبر</span>
+        </button>
+        <button class="pill-btn ghost" data-action="replay-game">
+          <svg class="tiny-icon"><use href="#i-replay"/></svg>
+          <span>لعب من جديد</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ COMPLETE OVERLAY ============ -->
+  <div class="overlay" id="overlay-complete" hidden>
+    <div class="complete-card">
+      <div class="complete-burst" id="complete-burst"></div>
+      <div class="complete-star" id="complete-star">
+        <svg><use href="#i-star"/></svg>
+      </div>
+      <span class="mission-chip" id="complete-chip">اكتملت المهمة</span>
+      <h2 id="complete-title">أحسنتم!</h2>
+      <p id="complete-text"></p>
+      <div class="learn-box">
+        <span class="learn-label"><svg class="tiny-icon"><use href="#i-bulb"/></svg> تعلّمنا</span>
+        <span id="complete-learn"></span>
+      </div>
+      <button class="btn btn-gold" data-action="next-mission" id="complete-next">
+        <span>المهمة التالية</span>
+        <svg class="btn-icon"><use href="#i-play"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ============ AUDIO ============ -->
+  <div class="audio-dock">
+    <button class="dock-btn" data-action="open-settings" aria-label="إعدادات الصوت" title="إعدادات الصوت">
+      <svg><use href="#i-gear"/></svg>
+    </button>
+    <button class="dock-btn" data-action="toggle-mute" id="mute-btn" aria-label="كتم الصوت" title="كتم الصوت" aria-pressed="false">
+      <svg><use href="#i-volume"/></svg>
+    </button>
+  </div>
+
+  <div class="settings-backdrop" id="settings-backdrop" hidden></div>
+  <aside class="settings" id="settings" aria-hidden="true" aria-label="إعدادات الصوت">
+    <div class="settings-head">
+      <div>
+        <h3>إعدادات الصوت</h3>
+        <p>تحكّم كامل بالموسيقى والأصوات</p>
+      </div>
+      <button class="icon-btn" data-action="close-settings" aria-label="إغلاق">
+        <svg><use href="#i-close"/></svg>
+      </button>
+    </div>
+    <div class="settings-body">
+      <div class="setting-row">
+        <div class="setting-label"><span>الصوت العام</span><output id="out-master">90%</output></div>
+        <input id="vol-master" type="range" min="0" max="100" step="1" value="90" data-audio="master" aria-label="الصوت العام">
+      </div>
+      <div class="setting-row">
+        <div class="setting-label"><svg class="tiny-icon"><use href="#i-music"/></svg><span>الموسيقى</span><output id="out-music">55%</output></div>
+        <input id="vol-music" type="range" min="0" max="100" step="1" value="55" data-audio="music" aria-label="الموسيقى">
+      </div>
+      <div class="setting-row">
+        <div class="setting-label"><svg class="tiny-icon"><use href="#i-volume"/></svg><span>المؤثرات الصوتية</span><output id="out-sfx">85%</output></div>
+        <input id="vol-sfx" type="range" min="0" max="100" step="1" value="85" data-audio="sfx" aria-label="المؤثرات الصوتية">
+      </div>
+      <div class="setting-row">
+        <div class="setting-label"><svg class="tiny-icon"><use href="#i-hand"/></svg><span>أصوات الشخصيات</span><output id="out-voice">95%</output></div>
+        <input id="vol-voice" type="range" min="0" max="100" step="1" value="95" data-audio="voice" aria-label="أصوات الشخصيات">
+      </div>
+
+      <div class="toggle-row">
+        <span>تشغيل الموسيقى</span>
+        <button class="switch" data-toggle="musicOn" role="switch" aria-checked="true" aria-label="تشغيل الموسيقى"><i></i></button>
+      </div>
+      <div class="toggle-row">
+        <span>كتم كل الأصوات</span>
+        <button class="switch" data-toggle="muted" role="switch" aria-checked="false" aria-label="كتم كل الأصوات"><i></i></button>
+      </div>
+
+      <button class="pill-btn test-btn" data-action="test-audio">
+        <svg class="tiny-icon"><use href="#i-volume"/></svg>
+        <span>تجربة الصوت</span>
+      </button>
+
+      <div class="audio-note" id="audio-note">جارٍ فحص أصوات النظام...</div>
+
+      <div class="settings-divider"></div>
+      <div class="mini-setting">
+        <span>إعادة ضبط تقدّم المهام</span>
+        <button class="pill-btn danger small" data-action="reset-progress">إعادة الضبط</button>
+      </div>
+      <p class="settings-foot">الموسيقى والمؤثرات تُصنع داخل الجهاز، وأصوات الشخصيات محفوظة داخل اللعبة — كلها تعمل دون إنترنت.</p>
+    </div>
+  </aside>
+
+  <div class="subtitle" id="subtitle" aria-live="polite"><span></span></div>
+  <div class="toast-layer" id="toast-layer"></div>
+  <div class="screen-flash" id="screen-flash"></div>
+  <div class="fatal" id="fatal" hidden>
+    <div>
+      <h2>تعذّر تشغيل اللعبة</h2>
+      <p id="fatal-msg">حدث خطأ غير متوقع.</p>
+    </div>
+  </div>
+</div>
+
+<script src="js/audio-engine.js"></script>
+<script src="js/music.js"></script>
+<script src="js/sfx.js"></script>
+<script src="audio/voice/manifest.js"></script>
+<script src="js/voice.js"></script>
+<script src="js/fx.js"></script>
+<script src="js/characters.js"></script>
+<script src="js/dragdrop.js"></script>
+<script src="js/mechanics.js"></script>
+<script src="js/missions.js"></script>
+<script src="js/scenes.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
